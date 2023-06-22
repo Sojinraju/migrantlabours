@@ -1,0 +1,17 @@
+<?php
+include_once("settings\settings.php");
+include_once("classes\userclass.php");
+$obj = new userclass();
+if (isset($_POST['hide']) and ($_POST['hide'] == 'h')) {
+    if (isset($_POST['email']) and ($_POST['email']) != null) {
+        if (isset($_POST['password']) and ($_POST['password']) != null) {
+            $email = trim($_POST['email']);
+            $password = trim($_POST['password']);
+            $obj->login($email, $password);
+        } else
+            echo "<script>alert('Password is empty')</script>";
+    } else
+        echo "<script>alert('Email is empty')</script>";
+}
+$smartyObj->display('login.tpl');
+?>
